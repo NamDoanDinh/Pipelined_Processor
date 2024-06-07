@@ -1,0 +1,35 @@
+addi x4, x0, 0x200
+addi x5, x0, 0x300
+addi x3, x0, 0x100
+addi x6, x0, 0x123
+
+add x8, x4, x5		# x8 = x4 + x5 = 0x200 + 0x300 = 0x500
+sub x2, x8, x3		# x2 = x8 - x3 = 0x500 - 0x100 = 0x400
+or x9, x6, x8		# x9 = x6 | x8 = 0x123 | 0x400 = 0x523
+and x7, x8, x2          # x7 = x8 & x2 = 0x500 & 0x400 = 0x400
+
+sw x8, 0x40(x5)		# dmem[0x40+x5] = x8, dmem[0x340] = 0x500
+
+lw x7, 0x40(x5)		# x7 = 0x500
+and x8, x7, x3          # x8 = x7 & x3 = 0x500 & 0x100 = 0x100
+or x2, x6, x7		# x2 = x6 | x7 = 0x123 | 0x500 = 0x523
+sub x3, x7, x2		# x3 = x7 - x2 = 0x500 - 0x523 = 0xFDD
+
+addi x1, x0, 0x111	# x1 = 0x111
+nop
+nop
+	jal  x1, TARGET		# 
+	sub  x8, x1, x3		# x8 = x1 - x3 = 0x111 - 0xFDD = 0x134, after jalr, x8 = x1 - x3 = 0x44 - 0xFDD = 0x67 
+	or   x9, x6, x5		# x9 = x6 | x5 = 0x123 | 0x300 = 323
+				# In E, FWaE = FWbE, br_less = 0, br_equal = 1, br_sel = 1, alu_data = PC + 20 (0x14), FlushD = Flush E = 1
+	nop
+	nop
+	nop
+	nop
+	nop
+TARGET:	
+        add  x7, x3, x4		# x7 = x3 + x4 = 0xFDD + 0x200 = 0x1DD
+	jalr x0, x1, 0
+	nop
+	nop
+	nop

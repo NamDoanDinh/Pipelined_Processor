@@ -1,0 +1,127 @@
+Step 1: Một giờ có 3600s, tạo một module counter cứ tăng giá trị từ 0-3600 theo mỗi giây thực = 12 bit, gắn module này bên dưới module wrapper, nối 12 bit này vào 12 bit thấp của io_sw_i, nghĩa là sw32 = {18'b0, start, pause, seconds[11:0]};
+actually nạp vào asm chỉ có sw32 = {20'b0, seconds[11:0]};
+Step 2: Gắn 2 bit tiếp theo của io_sw_i là các chân reset, pause stopwatch
+Step 3: Làm tương tự như bài trước (hiển thị giá trị lên hex), liên tục đọc về io_sw_i để lấy giá trị thời gian và xuất lên hex.
+
+
+addi x1, x0, 0x700
+addi x10, x1, 0x100   #HEX0
+addi x11, x1, 0x110   #HEX1
+addi x12, x1, 0x120   #HEX2
+addi x13, x1, 0x130   #HEX3
+addi x14, x1, 0x140   #HEX4
+addi x15, x1, 0x150   #HEX5
+addi x16, x1, 0x160   #HEX6
+addi x17, x1, 0x170   #HEX7
+addi x18, x1, 0x180   #LEDR
+addi x19, x1, 0x190   #LEDG
+addi x20, x1, 0x1A0   #LCD
+addi x21, x1, 0x200   #SW
+
+# x100 = 0 dec ... x109 = 9 dec
+Bin2SegLUT:
+addi x1, x0, 0x100
+addi x2, x0, 0x40
+sw x2, 0(x1)
+addi x1, x0, 0x104
+addi x2, x0, 0x79
+sw x2, 0(x1)
+addi x1, x0, 0x108
+addi x2, x0, 0x24
+sw x2, 0(x1)
+addi x1, x0, 0x10c
+addi x2, x0, 0x30
+sw x2, 0(x1)
+addi x1, x0, 0x110
+addi x2, x0, 0x19
+sw x2, 0(x1)
+addi x1, x0, 0x114
+addi x2, x0, 0x12
+sw x2, 0(x1)
+addi x1, x0, 0x118
+addi x2, x0, 0x02
+sw x2, 0(x1)
+addi x1, x0, 0x11c
+addi x2, x0, 0x78
+sw x2, 0(x1)
+addi x1, x0, 0x120
+addi x2, x0, 0x00
+sw x2, 0(x1)
+addi x1, x0, 0x124
+addi x2, x0, 0x10
+sw x2, 0(x1)
+
+
+LOOP:
+lw x2, 0(x21)
+jal x1, div600
+add x3, x3, x3
+add x3, x3, x3
+lw x3, 0x100(x3)	#LUT: 0x100 + x3 * 4
+sw x3, 0(x13)		#HEX3: mm1
+
+jal x1, div60
+add x3, x3, x3
+add x3, x3, x3
+lw x3, 0x100(x3)	#LUT: 0x100 + x3 * 4
+sw x3, 0(x12)		#HEX2: mm2
+
+jal x1, div10
+add x3, x3, x3
+add x3, x3, x3
+lw x3, 0x100(x3)	#LUT: 0x100 + x3 * 4
+sw x3, 0(x11)		#HEX1: ss1
+
+jal x1, div1
+add x3, x3, x3
+add x3, x3, x3
+lw x3, 0x100(x3)	#LUT: 0x100 + x3 * 4
+sw x3, 0(x10)		#HEX0: ss2
+
+jal x1, LOOP
+
+
+# x2 = remainder, x3 = quotient
+
+div600:
+addi x3, x0, 0
+div600_loop:
+addi x3, x3, 1
+addi x2, x2, -600
+bge x2, x0, div600_loop
+addi x3, x3, -1
+addi x2, x2, 600
+jalr x0, x1, 0
+
+div60:
+addi x3, x0, 0
+div60_loop:
+addi x3, x3, 1
+addi x2, x2, -60
+bge x2, x0, div60_loop
+addi x3, x3, -1
+addi x2, x2, 60
+jalr x0, x1, 0
+
+div10:
+addi x3, x0, 0
+div10_loop:
+addi x3, x3, 1
+addi x2, x2, -10
+bge x2, x0, div10_loop
+addi x3, x3, -1
+addi x2, x2, 10
+jalr x0, x1, 0
+
+div1:
+addi x3, x0, 0
+div1_loop:
+addi x3, x3, 1
+addi x2, x2, -1
+bge x2, x0, div1_loop
+addi x3, x3, -1
+addi x2, x2, 1
+jalr x0, x1, 0
+	
+
+

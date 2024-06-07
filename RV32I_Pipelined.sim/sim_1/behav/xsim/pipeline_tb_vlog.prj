@@ -1,0 +1,40 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/reg_D.v" \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/reg_F.v" \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/reg_M.v" \
+
+sv xil_defaultlib  \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/ALU.sv" \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/PCPlus4.sv" \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/br_mux.sv" \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/brcomp.sv" \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/ctrl_unit.sv" \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/data_memory.sv" \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/immGen.sv" \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/inst_memory.sv" \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/lsu.sv" \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/op_a_mux.sv" \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/op_b_mux.sv" \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/reg_dec.sv" \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/reg_file.sv" \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/wb_mux.sv" \
+
+verilog xil_defaultlib  \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/reg_E.v" \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/reg_W.v" \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/FWa_MUX.v" \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/Hazard_Unit.v" \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/FWb_MUX.v" \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/pipelineProcessor.v" \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/BrSelect.v" \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/PCplusIMM.v" \
+"../../../../RV32I_Pipelined.srcs/sources_1/new/JumpDes_MUX.v" \
+"../../../../RV32I_Pipelined.srcs/sim_1/new/pipeline_tb.v" \
+"../../../../RV32I_Pipelined.srcs/sim_1/new/reg_dec_tb.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

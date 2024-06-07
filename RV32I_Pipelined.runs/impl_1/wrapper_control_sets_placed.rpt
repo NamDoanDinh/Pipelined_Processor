@@ -1,0 +1,102 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
+| Date         : Sat Jun  1 13:24:49 2024
+| Host         : DESKTOP-K6E9EK3 running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file wrapper_control_sets_placed.rpt
+| Design       : wrapper
+| Device       : xc7a35t
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    24 |
+|    Minimum number of control sets                        |    24 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    10 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    24 |
+| >= 0 to < 4        |     0 |
+| >= 4 to < 6        |     0 |
+| >= 6 to < 8        |     0 |
+| >= 8 to < 10       |     0 |
+| >= 10 to < 12      |     0 |
+| >= 12 to < 14      |     1 |
+| >= 14 to < 16      |     0 |
+| >= 16              |    23 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              16 |            8 |
+| No           | No                    | Yes                    |              46 |           18 |
+| No           | Yes                   | No                     |               0 |            0 |
+| Yes          | No                    | No                     |               0 |            0 |
+| Yes          | No                    | Yes                    |             256 |          100 |
+| Yes          | Yes                   | No                     |               0 |            0 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++------------------+------------------------------------------+------------------+------------------+----------------+--------------+
+|   Clock Signal   |               Enable Signal              | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
++------------------+------------------------------------------+------------------+------------------+----------------+--------------+
+|  JC_OBUF_BUFG[0] |                                          | btnC_IBUF        |                4 |             13 |         3.25 |
+|  JC_OBUF_BUFG[0] |                                          |                  |                8 |             16 |         2.00 |
+|  JC_OBUF_BUFG[0] | riscv32i/Program_Counter/pc_reg[4]_1[0]  | btnC_IBUF        |                6 |             16 |         2.67 |
+|  JC_OBUF_BUFG[0] | riscv32i/Program_Counter/pc_reg[4]_13[0] | btnC_IBUF        |                5 |             16 |         3.20 |
+|  JC_OBUF_BUFG[0] | riscv32i/Program_Counter/pc_reg[4]_7[0]  | btnC_IBUF        |                6 |             16 |         2.67 |
+|  JC_OBUF_BUFG[0] | riscv32i/Program_Counter/pc_reg[3]_2[0]  | btnC_IBUF        |                7 |             16 |         2.29 |
+|  JC_OBUF_BUFG[0] | riscv32i/Program_Counter/pc_reg[4]_11[0] | btnC_IBUF        |                7 |             16 |         2.29 |
+|  JC_OBUF_BUFG[0] | riscv32i/Program_Counter/pc_reg[4]_6[0]  | btnC_IBUF        |                8 |             16 |         2.00 |
+|  JC_OBUF_BUFG[0] | riscv32i/Program_Counter/pc_reg[4]_0[0]  | btnC_IBUF        |                4 |             16 |         4.00 |
+|  JC_OBUF_BUFG[0] | riscv32i/Program_Counter/pc_reg[4]_5[0]  | btnC_IBUF        |                5 |             16 |         3.20 |
+|  JC_OBUF_BUFG[0] | riscv32i/Program_Counter/pc_reg[4]_9[0]  | btnC_IBUF        |                6 |             16 |         2.67 |
+|  JC_OBUF_BUFG[0] | riscv32i/Program_Counter/pc_reg[2]_4[0]  | btnC_IBUF        |                3 |             16 |         5.33 |
+|  JC_OBUF_BUFG[0] | riscv32i/Program_Counter/pc_reg[3]_0[0]  | btnC_IBUF        |                6 |             16 |         2.67 |
+|  JC_OBUF_BUFG[0] | riscv32i/Program_Counter/pc_reg[3]_1[0]  | btnC_IBUF        |                6 |             16 |         2.67 |
+|  JC_OBUF_BUFG[0] | riscv32i/Program_Counter/pc_reg[4]_10[0] | btnC_IBUF        |                8 |             16 |         2.00 |
+|  JC_OBUF_BUFG[0] | riscv32i/Program_Counter/pc_reg[2]_3     |                  |                4 |             16 |         4.00 |
+|  JC_OBUF_BUFG[0] | riscv32i/Program_Counter/pc_reg[4]_4     |                  |                4 |             16 |         4.00 |
+|  JC_OBUF_BUFG[0] | riscv32i/Program_Counter/pc_reg[4]_2     |                  |                4 |             16 |         4.00 |
+|  JC_OBUF_BUFG[0] | riscv32i/Program_Counter/pc_reg[4]_3     |                  |                4 |             16 |         4.00 |
+|  JC_OBUF_BUFG[0] | riscv32i/Program_Counter/E[0]            | btnC_IBUF        |                6 |             16 |         2.67 |
+|  JC_OBUF_BUFG[0] | riscv32i/Program_Counter/pc_reg[4]_8[0]  | btnC_IBUF        |               17 |             32 |         1.88 |
+|  JC_OBUF_BUFG[0] | riscv32i/Program_Counter/pc_reg[2]_2     |                  |                8 |             32 |         4.00 |
+|  clk_IBUF_BUFG   |                                          | btnC_IBUF        |               14 |             33 |         2.36 |
+|  JC_OBUF_BUFG[0] | riscv32i/Program_Counter/pc_reg[4]_12    |                  |               16 |             64 |         4.00 |
++------------------+------------------------------------------+------------------+------------------+----------------+--------------+
+
+

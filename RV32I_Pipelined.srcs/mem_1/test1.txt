@@ -1,0 +1,7 @@
+addi x2, x0, 0x700
+addi x3, x2, 0x200
+addi x4, x2, 0x180
+loop:
+lw x5, 0(x3)
+sw x5, 0(x4)
+jal x1, loop
