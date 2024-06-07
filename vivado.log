@@ -6609,3 +6609,7 @@ Completed Processing XDC Constraints
 refresh_design: Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 3938.363 ; gain = 0.000
 write_schematic -format pdf -orientation portrait D:/Verilog/CompArch/RV32I_Pipelined/schematic.pdf
 D:/Verilog/CompArch/RV32I_Pipelined/schematic.pdf
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+exit
+INFO: [Common 17-206] Exiting Vivado at Fri Jun  7 12:23:20 2024...

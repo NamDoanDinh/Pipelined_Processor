@@ -133,3 +133,4 @@ run 1000 ns
 refresh_design
 refresh_design
 write_schematic -format pdf -orientation portrait D:/Verilog/CompArch/RV32I_Pipelined/schematic.pdf
+close_sim
